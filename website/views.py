@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import User
+from .models import User, Relationship
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -50,9 +52,19 @@ def register_user(request):
 def profile(request):
     # Kullanıcının bilgilerini al
     if request.user.is_authenticated:        
-        user = request.user
+        user = User.objects.get(id=request.user.id)
+        
+        # other_users = User.objects.exclude(id=request.user.id)  # Mevcut kullanıcıyı listeden çıkar
+        friends = user.get_friends()
+        sent_requests = Relationship.objects.filter(sender=user, status='send')
+        
+        other_users = User.objects.exclude(id__in=sent_requests).exclude(id=user.id).exclude(id__in=[friend.id for friend in friends])
+        received_requests = Relationship.objects.filter(receiver=user, status='send')
         context = {
-            'user': user  # Kullanıcıyı template'e gönder
+            'user': user,  # Kullanıcıyı template'e gönder
+            'other_users' : other_users,
+            'sent_requests' : sent_requests,
+            'received_requests' : received_requests,
         }
         return render(request, 'profile.html', context)
     else:
@@ -75,4 +87,34 @@ def update_profile(request):
     else:
         messages.success(request, ("You must be logged in!"))
         return redirect('home')
-        
+
+# @login_required
+# def send_friend_request(request, receiver_id):
+#     receiver = User.objects.get(id=receiver_id)
+#     Relationship.objects.create(sender=request.user, receiver=receiver, status='send')
+#     return redirect('profile')
+
+@login_required
+def accept_friend_request(request, relationship_id):
+    relationship = Relationship.objects.get(id=relationship_id)
+    if relationship.receiver == request.user:
+        relationship.status = 'accepted'
+        relationship.save()
+    return redirect('profile')
+
+
+
+@login_required
+def send_friend_request(request, receiver_id):
+    receiver = User.objects.get(id=receiver_id)
+    
+    # Mevcut ilişkiyi kontrol et
+    existing_relationship = Relationship.objects.filter(sender=request.user, receiver=receiver).first()
+    
+    # Eğer ilişki yoksa veya ilişki kabul edilmişse, yeni bir istek gönder
+    if not existing_relationship or existing_relationship.status == 'accepted':
+        Relationship.objects.create(sender=request.user, receiver=receiver, status='send')
+        # Diğer Kullanıcılar listesinden sil
+        other_users = User.objects.exclude(id=request.user.id)
+        other_users = other_users.exclude(id=receiver.id)
+    return redirect('profile')

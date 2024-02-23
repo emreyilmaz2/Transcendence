@@ -28,6 +28,35 @@
             {% comment %} {% endif %} {% endcomment %}
         </div>
     </div>
+
+
+    <h1>Profile of : {{user}}</h1>
+    {% for friend in user.get_friends %}
+        {{friend}}</br>
+    {% endfor %}
+    </br>
+    Friends number : {{user.get_friends_no}}
+    
+    <h2>Other Users:</h2>
+    {% for other_user in other_users %}
+        {% if other_user not in sent_requests %}
+            <a href="{% url 'send_friend_request' other_user.id %}">Send Friend Request</a> {{ other_user }} <br>
+        {% else %}
+            <!-- Arkadaşlık isteği gönderildiğinde buton inaktif hale gelir -->
+            {{ other_user }} (Friend Request Sent) <br>
+        {% endif %}
+    {% endfor %}
+    
+    <h2>Sent Friend Requests:</h2>
+    {% for request in sent_requests %}
+      {{ request.receiver }} <br>
+    {% endfor %}
+    
+    <h2>Received Friend Requests:</h2>
+    {% for request in received_requests %}
+        {{ request.sender }} <br>
+    <a href="{% url 'accept_friend_request' request.id %}">Accept</a> <br>
+    {% endfor %}
 </body>
 </html>
 
