@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Update User</h1>
+<img src="{% static 'images/baymax.jpeg' %}" class="card-img-top" alt="...">
+<br/>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br/>
+    <a class="btn btn-secondary" href="{%url 'profile' %}" role="button">Geri</a>
+    <button type="submit" class="btn btn-outline-primary">
+        Update
+    </button>
+</form>
+</div>
+{% endblock %}

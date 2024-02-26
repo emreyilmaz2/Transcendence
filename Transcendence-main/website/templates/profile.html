@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel = "stylesheet" type="text/css" href="{% static '/css/main.css' %}">>
+</head>
+<body>
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/baymax.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Profile</h5>
+        <p class="card-text">Kişi Bilgileriniz..</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><p>Username: {{ user.username }}</p></li>
+            <li class="list-group-item"><p>First Name: {{ user.first_name }}</p></li>
+            <li class="list-group-item"><p>Last Name: {{ user.last_name }}</p></li>
+            <li class="list-group-item"><p>Email: {{ user.email }}</p></li>
+        </ul>
+        <div class="card-body">
+            <a class="btn btn-outline-secondary" href="{%url 'home' %}" role="button">Geri</a>
+            {% comment %} {% if request.user.id == profile.user.id %} {% endcomment %}
+            <!--Check for correct user--> 
+            <a href="{% url 'update_profile' %}" class="btn btn-outline-primary">Update Profile</a>
+            {% comment %} {% endif %} {% endcomment %}
+        </div>
+    </div>
+
+
+    <h1>Profile of : {{user}}</h1>
+    {% for friend in user.get_friends %}
+        {{friend}}</br>
+    {% endfor %}
+    </br>
+    Friends number : {{user.get_friends_no}}
+    
+    <h2>Other Users:</h2>
+    {% for other_user in other_users %}
+        {% if other_user not in sent_requests %}
+            <a href="{% url 'send_friend_request' other_user.id %}">Send Friend Request</a> {{ other_user }} <br>
+        {% else %}
+            <!-- Arkadaşlık isteği gönderildiğinde buton inaktif hale gelir -->
+            {{ other_user }} (Friend Request Sent) <br>
+        {% endif %}
+    {% endfor %}
+    
+    <h2>Sent Friend Requests:</h2>
+    {% for request in sent_requests %}
+      {{ request.receiver }} <br>
+    {% endfor %}
+    
+    <h2>Received Friend Requests:</h2>
+    {% for request in received_requests %}
+        {{ request.sender }} <br>
+    <a href="{% url 'accept_friend_request' request.id %}">Accept</a> <br>
+    {% endfor %}
+</body>
+</html>
+
+{%endblock%}
