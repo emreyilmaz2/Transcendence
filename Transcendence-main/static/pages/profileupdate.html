@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Sayfası</title>
+    <title>Profil Güncelleme Sayfası</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -11,15 +11,10 @@
     <!-- Custom CSS -->
     <style>
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-        }
-        .match-stats {
-            margin-top: 20px;
-        }
-        .match-history {
-            margin-top: 20px;
+            
         }
     </style>
 </head>
@@ -27,16 +22,17 @@
 
 <div class="container-fluid">
     <div class="row">
+        
         <!-- Sidebar -->
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <img src="\static\images\karım.jpg" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
-                <span class="fs-4">Admin</span>
+                <img src="https://github.com/mdo.png" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
+                <span class="fs-4">Nkalyonc</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <a href="#" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                         Profile
                     </a>
@@ -48,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" class="nav-link active" aria-current="page">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                         Friends
                     </a>
@@ -70,57 +66,47 @@
         <!-- Content -->
         <div class="col">
             <div class="container">
-                <div class="text-center">
-                                    <!-- Ayarlar Butonu -->
-<div class="position-fixed top-0 end-0 m-3">
-    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Settings">
-        <i class="fas fa-cog"></i>
-    </button>
-</div>
-                    <!-- Profil Resmi ve İsim Soyisim -->
-                    <img src="\static\images\karım.jpg" alt="Profil Resmi" class="profile-image">
-                    <h2>Admin</h2>
+                <h4 class="text-center mb-4">Profil Bilgilerini Güncelle</h4>
+                <div class="text-center mb-4">
+                    <img src="https://github.com/mdo.png" alt="Profil Resmi" class="rounded-circle mb-2" width="150">
+                    <br>
+                    <button class="btn btn-primary btn-sm">Change Picture</button>
+                    <button class="btn btn-danger btn-sm">Delete Picture</button>
                 </div>
-                
-                <!-- Maç İstatistikleri -->
-                <div class="match-stats">
-                    <h3 class="text-center">Maç İstatistikleri</h3>
-                    <p class="text-center">Kazanılan: 10</p>
-                    <p class="text-center">Kaybedilen: 5</p>
-                    <p class="text-center">Toplam Maç: 15</p>
-                    <!-- Grafik Bölümü -->
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">Kazanılan: 10</div>
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">Kaybedilen: 5</div>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Enter firstName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Enter lastName">
+                        </div>
                     </div>
-                </div>
-                <!-- Maç Geçmişi -->
-                <div class="match-history">
-                    <h3 class="text-center">Maç Geçmişi</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Oyuncular</th>
-                                <th>Skor</th>
-                                <th>Maç Tarihi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>İsim1 vs İsim2</td>
-                                <td>5 - 3</td>
-                                <td>2024-02-25</td>
-                            </tr>
-                            <!-- Diğer maçlar buraya eklenebilir -->
-                        </tbody>
-                    </table>
-                </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
-
-
+    
 
 <!-- Bootstrap JS ve jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

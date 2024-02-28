@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Edit Profile Page{% endblock %}
 {% block content %}
 
-<div class="col-md-6 offset-md-3">
-<h1>Update User</h1>
-<img src="{% static 'images/baymax.jpeg' %}" class="card-img-top" alt="...">
-<br/>
-
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <br/>
-    <a class="btn btn-secondary" href="{%url 'profile' %}" role="button">Geri</a>
-    <button type="submit" class="btn btn-outline-primary">
-        Update
-    </button>
-</form>
-</div>
+<div class="form-group">
+    <form method="post" enctype="multipart/form-data">
+        <form id="avatar_form" name="avatar_form" enctype="multipart/form-data" method="post"></form>>
+            {% csrf_token %}
+           <div class="profile-pic-container">
+                <label for="id_avatar" class="profile-pic-label">
+                    <img src="{{{% static 'images/baymax.jpeg' %}}}" alt="Profile Picture"
+                    class="profile-pic">
+                    <div class="change-image-overlay">
+                        <span class="bi bi-image-fill"></span>
+                        <span class="change-image-text">Change Image</span>
+                    </div>
+                </label>
+                <input type="file" name="avatar" accept="image/*" id="id_avatar" class="file-input" value="{{avatar}}">
+            </div> 
+        </form>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Güncelle</button>
+    </form>
 {% endblock %}

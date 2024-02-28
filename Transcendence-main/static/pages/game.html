@@ -20,14 +20,18 @@
             color: #fff;
             height: 100vh;
         }
-        .game-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        .button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-        .play-button {
-            font-size: 24px;
+        .button-container button {
+            display: block;
+            width: 500px;
+            height: 100px;
+            margin: 100px;
+            margin-left: 300px;
         }
     </style>
 </head>
@@ -39,25 +43,25 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="https://github.com/mdo.png" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
-                <span class="fs-4">Admin</span>
+                <span class="fs-4">Nkalyonc</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{% url 'profile' %}" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-                        Profile
-                    </a>                    
-                </li>
-                <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link active" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                         Game
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                         Friends
                     </a>
                 </li>
@@ -75,16 +79,12 @@
             </div>
         </div>
 
-        <!-- Game Content -->
-        <div class="col game-container">
-            <div class="container">
-                <div class="text-center">
-                    <img src="\static\images\ecole.jpg" alt="Game Image" class="img-fluid">
-                    <button class="btn btn-primary mt-4 play-button"><i class="fas fa-play"></i> Play</button>
-                </div>
-            </div>
+        <!-- Button Container -->
+        <div class="button-container">
+            <button class="btn btn-primary" >One Player</button>
+            <button class="btn btn-primary" >Two Player</button>
+            <button class="btn btn-primary">Tournament</button>
         </div>
-
     </div>
 </div>
 

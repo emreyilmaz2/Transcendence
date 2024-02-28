@@ -3,7 +3,9 @@ from . import views
 from .views import send_friend_request, accept_friend_request
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.index, name='index'),
+    path('home/', views.home, name='home'),
+    path('login/', views.login_page, name='login'),
     path('logout/', views. logout_user, name= 'logout'),
     path('register/', views.register_user, name= 'register'),
     path('profile/', views.profile, name= 'profile'),

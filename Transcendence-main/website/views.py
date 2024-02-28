@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import User, Relationship
-from .forms import SignUpForm
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponseRedirect
+from .forms import (
+    SignUpForm,
+)
 
 
 # Create your views here.
 
-def home(request):
+def login_page(request):
     # Check if someone is trying to log in
     if request.method == 'POST':
         username = request.POST['username']
@@ -19,12 +21,13 @@ def home(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'You Have Been Logged In Sir')
-            return redirect('home')
+            return HttpResponseRedirect('/home/')
+            #return render(request, 'home.html', {})
         else:
             messages.success(request, "There Was Error Sir Please Give Me Ten(10) Pounds...")
             return redirect('home')
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'login.html', {})
 
 def logout_user(request):
     logout(request)
@@ -75,7 +78,6 @@ def profile(request):
 def update_profile(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(nickname=request.user.nickname)
-
         form = SignUpForm(request.POST or None, instance=current_user)
         if form.is_valid():
             form.save()
@@ -87,6 +89,27 @@ def update_profile(request):
     else:
         messages.success(request, ("You must be logged in!"))
         return redirect('home')
+    
+def update_images(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Formdan gelen veriyi işleyin
+            new_picture = form.cleaned_data['picture']
+            # Kullanıcının profilini güncelleyin
+            request.user.profile.picture = new_picture
+            request.user.profile.save()
+            return redirect('profile')  # Profil sayfasına yönlendir
+    else:
+        form = SignUpForm()
+    return render(request, 'update_profile.html', {'form': form})
+
+#Base Page start button func
+def index(request):
+    return render(request, "base.html")
+
+def home(request):
+    return render(request, "home.html")
 
 # @login_required
 # def send_friend_request(request, receiver_id):

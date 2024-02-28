@@ -15,19 +15,11 @@
             height: 150px;
             border-radius: 50%;
         }
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            height: 100vh;
+        .match-stats {
+            margin-top: 20px;
         }
-        .game-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .play-button {
-            font-size: 24px;
+        .match-history {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -39,25 +31,25 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="https://github.com/mdo.png" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
-                <span class="fs-4">Admin</span>
+                <span class="fs-4">Nkalyonc</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{% url 'profile' %}" class="nav-link text-white">
+                    <a href="#" class="nav-link active" aria-current="page">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                         Profile
-                    </a>                    
+                    </a>
                 </li>
-                <li class="nav-item">
+                <li>
                     <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                         Game
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                         Friends
                     </a>
                 </li>
@@ -74,19 +66,61 @@
                 </ul>
             </div>
         </div>
-
-        <!-- Game Content -->
-        <div class="col game-container">
+        
+        <!-- Content -->
+        <div class="col">
             <div class="container">
                 <div class="text-center">
-                    <img src="\static\images\ecole.jpg" alt="Game Image" class="img-fluid">
-                    <button class="btn btn-primary mt-4 play-button"><i class="fas fa-play"></i> Play</button>
+                                    <!-- Ayarlar Butonu -->
+<div class="position-fixed top-0 end-0 m-3">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Settings">
+        <i class="fas fa-cog"></i>
+    </button>
+</div>
+                    <!-- Profil Resmi ve İsim Soyisim -->
+                    <img src="https://github.com/mdo.png" alt="Profil Resmi" class="profile-image">
+                    <h2>İsim Soyisim</h2>
+                </div>
+                
+                <!-- Maç İstatistikleri -->
+                <div class="match-stats">
+                    <h3 class="text-center">Maç İstatistikleri</h3>
+                    <p class="text-center">Kazanılan: 10</p>
+                    <p class="text-center">Kaybedilen: 5</p>
+                    <p class="text-center">Toplam Maç: 15</p>
+                    <!-- Grafik Bölümü -->
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">Kazanılan: 10</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">Kaybedilen: 5</div>
+                    </div>
+                </div>
+                <!-- Maç Geçmişi -->
+                <div class="match-history">
+                    <h3 class="text-center">Maç Geçmişi</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Oyuncular</th>
+                                <th>Skor</th>
+                                <th>Maç Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>İsim1 vs İsim2</td>
+                                <td>5 - 3</td>
+                                <td>2024-02-25</td>
+                            </tr>
+                            <!-- Diğer maçlar buraya eklenebilir -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+
 
 <!-- Bootstrap JS ve jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
