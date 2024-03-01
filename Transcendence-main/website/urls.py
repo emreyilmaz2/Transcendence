@@ -5,8 +5,11 @@ from .views import send_friend_request, accept_friend_request
 urlpatterns = [
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
-    path('login/', views.login_page, name='login'),
-    path('logout/', views. logout_user, name= 'logout'),
+    path('login_page/', views.login_page, name='login_page'),
+    #path('forget_passwd/', views.forget_passwd, name='forget_passwd'),
+    path('friends/', views.friends, name= 'friends'),
+    path('profile_set', views.profile_set, name= 'profile_set'),
+    path('logout_user/', views.logout_user, name= 'logout_user'),
     path('register/', views.register_user, name= 'register'),
     path('profile/', views.profile, name= 'profile'),
     path('update_profile/', views.update_profile, name= 'update_profile'),

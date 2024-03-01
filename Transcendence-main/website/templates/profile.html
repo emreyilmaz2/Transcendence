@@ -29,14 +29,14 @@
     <div class="row">
         <!-- Sidebar -->
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="\static\images\karım.jpg" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
                 <span class="fs-4">Admin</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <a href="" class="nav-link active" aria-current="page">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                         Profile
                     </a>
@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="{% url 'friends' %}" class="nav-link text-white">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                         Friends
                     </a>
@@ -57,7 +57,7 @@
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>mdo</strong>
+                    <strong>Settings</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="./pages/settings.html">Settings</a></li>
@@ -73,9 +73,11 @@
                 <div class="text-center">
                                     <!-- Ayarlar Butonu -->
 <div class="position-fixed top-0 end-0 m-3">
-    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Settings">
-        <i class="fas fa-cog"></i>
-    </button>
+    <a href="{% url 'profile_set' %}">
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Settings">
+            <i class="fas fa-cog"></i>
+        </button>
+    </a>
 </div>
                     <!-- Profil Resmi ve İsim Soyisim -->
                     <img src="\static\images\karım.jpg" alt="Profil Resmi" class="profile-image">

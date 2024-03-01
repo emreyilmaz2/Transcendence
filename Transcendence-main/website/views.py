@@ -24,15 +24,17 @@ def login_page(request):
             return HttpResponseRedirect('/home/')
             #return render(request, 'home.html', {})
         else:
-            messages.success(request, "There Was Error Sir Please Give Me Ten(10) Pounds...")
-            return redirect('home')
+            messages.success(request, "Error")
+            return redirect('login_page')
     else:
         return render(request, 'login.html', {})
 
 def logout_user(request):
     logout(request)
     messages.success(request, "Cikis Yaptiniz!")
-    return redirect('home')
+    return redirect('login_page')
+
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -104,12 +106,6 @@ def update_images(request):
         form = SignUpForm()
     return render(request, 'update_profile.html', {'form': form})
 
-#Base Page start button func
-def index(request):
-    return render(request, "base.html")
-
-def home(request):
-    return render(request, "home.html")
 
 # @login_required
 # def send_friend_request(request, receiver_id):
@@ -141,3 +137,16 @@ def send_friend_request(request, receiver_id):
         other_users = User.objects.exclude(id=request.user.id)
         other_users = other_users.exclude(id=receiver.id)
     return redirect('profile')
+
+#Base Page start button func
+def index(request):
+    return render(request, "base.html")
+
+def home(request):
+    return render(request, "home.html")
+
+def friends(request):
+    return render(request, "friends.html")
+
+def profile_set(request):
+    return render(request, "profile-settings.html")

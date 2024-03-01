@@ -37,15 +37,15 @@
     <div class="row">
         <!-- Sidebar -->
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <img src="https://github.com/mdo.png" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
+            <a href="/home/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img src="\static\images\karım.jpg" alt="" width="40" height="40" class="rounded-circle me-2" style="margin-right: 10px;">
                 <span class="fs-4">Admin</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a href="{% url 'profile' %}" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="profile"></use></svg>
                         Profile
                     </a>                    
                 </li>
@@ -56,22 +56,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                    <a href="{% url 'friends' %}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="friends"></use></svg>
                         Friends
                     </a>
                 </li>
             </ul>
             <hr>
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>mdo</strong>
+                <a href="/logout_user" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong>Logout</strong>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="./pages/settings.html">Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
             </div>
         </div>
 
